@@ -52,7 +52,7 @@ class Room(DefaultRoom):
         return_string += "  " + self.db.format_colour + "Exits:" + "|n\n"
 
         if exits:
-            return_string += self.db.hold_colour + "\n".join(exits) + "|n\n"
+            return_string += self.db.hold_colour + "To " + "\nTo ".join(exits) + "|n\n"
         else:
             return_string += self.error_color + "his room has no exits|n\n"
 
@@ -73,6 +73,7 @@ class Room(DefaultRoom):
 
     
     def at_object_creation(self):
+        super(DefaultRoom, self).at_object_creation()
         self.db.name_colour   = "|555"
         self.db.format_colour = "|555"
         self.db.hold_colour   = "|n"
@@ -80,6 +81,21 @@ class Room(DefaultRoom):
         self.db.error_colour  = "|500"
 
 
+class OverworldRoom(Room):
+    def at_object_creation(self):
+        super(Room, self).at_object_creation()
+        self.db.name_colour   = "|520"
+        self.db.format_colour = "|520"
+        self.db.hold_colour   = "|540"
+        self.db.desc_colour   = "|555"
+
+class UnderworldRoom(Room):
+    def at_object_creation(self):
+        super(Room, self).at_object_creation()
+        self.db.name_colour   = "|015"
+        self.db.format_colour = "|015"
+        self.db.hold_colour   = "|035"
+        self.db.desc_colour   = "|555"
 
 class TestRoom(Room):
     def format_room_appearance(self,
@@ -124,7 +140,7 @@ class TestRoom(Room):
         return_string += "  " + format_colour + "Exits:" + "|n\n"
 
         if exits:
-            return_string += object_colour + "\n".join(exits) + "|n\n"
+            return_string += object_colour + "To " + "\nTo ".join(exits) + "|n\n"
         else:
             return_string += "|500This room has no exits|n\n"
 
