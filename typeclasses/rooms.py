@@ -36,35 +36,35 @@ class Room(DefaultRoom):
             else:
                 things.append(key)
 
-        seperator_line = self.format_colour + "-"*78 + "|n\n"
+        seperator_line = self.db.format_colour + "-"*78 + "|n\n"
 
         # get description, build string
-        return_string = self.name_colour + "%s|n\n" % self.get_display_name(looker)
+        return_string = self.db.name_colour + "%s|n\n" % self.get_display_name(looker)
         desc = self.db.desc
     
         if desc:
             # Also try |542
-            return_string += self.desc_colour + "%s|n\n" % desc 
+            return_string += self.db.desc_colour + "%s|n\n" % desc 
         else:
-            return_string += self.error_colour + "This room has no description|n\n"
+            return_string += self.db.error_colour + "This room has no description|n\n"
 
         return_string += seperator_line
-        return_string += "  " + self.format_colour + "Exits:" + "|n\n"
+        return_string += "  " + self.db.format_colour + "Exits:" + "|n\n"
 
         if exits:
-            return_string += self.hold_colour + "\n".join(exits) + "|n\n"
+            return_string += self.db.hold_colour + "\n".join(exits) + "|n\n"
         else:
-            return_string += "|500This room has no exits|n\n"
+            return_string += self.error_color + "his room has no exits|n\n"
 
         if users:
             return_string += seperator_line
-            return_string += "  " + self.format_colour + "Players:|n\n"
-            return_string += self.hold_colour + ", ".join(users) + "|n\n"
+            return_string += "  " + self.db.format_colour + "Players:|n\n"
+            return_string += self.db.hold_colour + ", ".join(users) + "|n\n"
 
         if things:
             return_string += seperator_line
-            return_string += "  " + self.format_colour + "Objects:|n\n"
-            return_string += self.hold_colour + ", ".join(things) + "|n\n"
+            return_string += "  " + self.db.format_colour + "Objects:|n\n"
+            return_string += self.db.hold_colour + ", ".join(things) + "|n\n"
 
 
         return_string += seperator_line
@@ -73,11 +73,11 @@ class Room(DefaultRoom):
 
     
     def at_object_creation(self):
-        self.name_colour   = "|555"
-        self.format_colour = "|555"
-        self.hold_colour   = "|n"
-        self.desc_colour   = "|n"
-        self.error_colour  = "|500"
+        self.db.name_colour   = "|555"
+        self.db.format_colour = "|555"
+        self.db.hold_colour   = "|n"
+        self.db.desc_colour   = "|n"
+        self.db.error_colour  = "|500"
 
 
 
