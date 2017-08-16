@@ -19,30 +19,77 @@ class Room(DefaultRoom):
     properties and methods available on all Objects.
     """
 
-    # def return_appearance(self, looker):
-    #     room_name = self.get_display_name(look)
-    #     room_name = "|fa"
+    def return_appearance(self, looker):
+        visible = (con for con in self.contents if True and
+                   con.access(looker, "view"))
 
-    pass
+        exits, users, things = [], [], []
+        
+        for con in visible:
+            key = con.get_display_name(looker)
+            
+            if con.destination:
+                exits.append(key)
+            elif con.has_player:
+                # This was originally |c%s|n
+                users.append("%s" % key)
+            else:
+                things.append(key)
 
-# light name
-# grey desc
-# dark line seperators
-# Super light exit names
+        seperator_line = self.format_colour + "-"*78 + "|n\n"
+
+        # get description, build string
+        return_string = self.name_colour + "%s|n\n" % self.get_display_name(looker)
+        desc = self.db.desc
+    
+        if desc:
+            # Also try |542
+            return_string += self.desc_colour + "%s|n\n" % desc 
+        else:
+            return_string += self.error_colour + "This room has no description|n\n"
+
+        return_string += seperator_line
+        return_string += "  " + self.format_colour + "Exits:" + "|n\n"
+
+        if exits:
+            return_string += self.hold_colour + "\n".join(exits) + "|n\n"
+        else:
+            return_string += "|500This room has no exits|n\n"
+
+        if users:
+            return_string += seperator_line
+            return_string += "  " + self.format_colour + "Players:|n\n"
+            return_string += self.hold_colour + ", ".join(users) + "|n\n"
+
+        if things:
+            return_string += seperator_line
+            return_string += "  " + self.format_colour + "Objects:|n\n"
+            return_string += self.hold_colour + ", ".join(things) + "|n\n"
+
+
+        return_string += seperator_line
+
+        return return_string
+
+    
+    def at_object_creation(self):
+        self.name_colour   = "|555"
+        self.format_colour = "|555"
+        self.hold_colour   = "|n"
+        self.desc_colour   = "|n"
+        self.error_colour  = "|500"
+
 
 
 class TestRoom(Room):
     def format_room_appearance(self,
-                              looker,
+                               looker,
                                title_colour, 
                                format_colour, 
                                object_colour, 
                                desc_colour = "|555",
                                error_colour = "|500"):
-        # title_colour  = "|520"
-        # format_colour = "|520"
-        # object_colour = "|540"
-        
+
         # get and identify all objects
         # (NOTE: replace True with 'con != looker' if you want to not show yourself)
         visible = (con for con in self.contents if True and
