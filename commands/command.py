@@ -183,3 +183,22 @@ class Command(BaseCommand):
 #                 self.character = self.caller.get_puppet(self.session)
 #             else:
 #                 self.character = None
+
+
+from evennia import default_cmds
+class CmdTest(default_cmds.MuxCommand):
+    """
+    Does really arbitary things.
+
+    Usage:
+      +test [args]
+
+    This command does nothing of value.
+    """
+    key = "+test"
+
+    def func(self):
+        if not self.args:
+            self.caller.msg("Nope >:V")
+        else:
+            self.caller.msg("|g> " + self.args + " |b(at " + self.caller.location.name + ")|n")
