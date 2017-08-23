@@ -34,7 +34,6 @@ class Character(DefaultCharacter):
     def at_object_creation(self):
         super(DefaultCharacter, self).at_object_creation()
         self.db.name_colour = "|555"
-        self.db.profile = "Description not set"
         self.db.race = None
 
     def return_appearance(self, looker):
@@ -55,10 +54,11 @@ class HumanCharacter(PlayerCharacter):
     def at_object_creation(self):
         super(PlayerCharacter, self).at_object_creation()
         self.db.name_colour = "|015"
+        self.race = "Human"
 
 
 class DemonCharacter(PlayerCharacter):
     def at_object_creation(self):
         super(PlayerCharacter, self).at_object_creation()
         self.db.name_colour = "|520"
-
+        self.race = "Demon"

@@ -202,3 +202,25 @@ class CmdTest(default_cmds.MuxCommand):
             self.caller.msg("Nope >:V")
         else:
             self.caller.msg("|g> " + self.args + " |b(at " + self.caller.location.name + ")|n")
+
+class CmdProfile(default_cmds.MuxCommand):
+    """
+    profile
+
+    Usage:
+      profile [desc]
+
+    Sets someone profile. If you are not a wizard, then the only
+    pofile you may set is your own, using me.
+
+    """
+
+    key = "profile"
+    locks = "cmd:all()"
+
+    def func(self):
+        if not self.args:
+            self.caller.msg("|555Please provide a profile.")
+        else:
+            self.caller.db.profile = self.args.strip()
+            self.caller.msg("You set your profile")

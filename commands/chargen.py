@@ -5,6 +5,8 @@ Contains code related for a command-based chargen system
 
 """
 from evennia import default_cmds
+from evennia import CmdSet
+import typeclasses.characters 
 
 from evennia.utils.evmenu import EvMenu
 
@@ -31,27 +33,102 @@ from evennia.utils.evmenu import EvMenu
 #     {...}, ...)
 # "
 
+def validate_human(caller):
+    # Check description
+    # Check profile
+    # Later: check moves
+    # If all pass:
+    #   Swap his type class
+    #   Fill out the fields
+    #   Finish!
+    if len(caller.db.desc) < 320:
+        caller.msg("|500You description is too short (only " + str(len(caller.db.profile)) + " characters long).|n")
+        return "node_human_validate"
+
+    if len(caller.db.profile) < 240:
+        caller.msg("|500You profile is too short (only " + str(len(caller.db.profile)) + " characters long).|n")
+        return "node_human_validate"
+
+    caller.swap_typeclass("typeclasses.characters.HumanCharacter")
+
+    pass
+
 # Node 0
 def node_race_select(caller):
     text = "Please select your race"
-    options = [{ "key": ["Demon", "demon"],
-            "desc": "You want to be a demon",
-            "goto": "node_demon_desc"
-        }
+    options = [
+        { "key": ["Human", "human"],
+          "desc": "You wnat to be a human",
+          "goto": "node_human_desc" },
+
+        { "key": ["Demon", "demon"],
+          "desc": "You want to be a demon",
+          "goto": "node_demon_desc" }
     ]
     return text, options
 
 # Node 1 Human
 def node_human_desc(caller):
-    return "success", [{"key": "_default", "goto": None}]
+    text = (
+    "Please describe your character using \"desc [your description]\". You can check your"
+    " description by using \"look me\". Use |/ for new lines."
+    "\nYour description should describe how your character appears, and should include"
+    " details about your character's stature, clothing, recognizable facial features"
+    " and outstanding characteristics"
+    " like scars. How would other players see your character?"
+    "\nIt must be 320 characters long. However, longer is recommended."
+    )
+
+    options = [
+        { "key": ["(A)dvance", "advance", "a"],
+          "desc": "Continue to profile",
+          "goto": "node_human_profile" },
+        
+        { "key": ["(B)ack", "back", "b"],
+          "desc": "Go back to race select",
+          "goto": "node_race_select" 
+        }
+    ]
+    return text, options
 
 # Node 2 Human
 def node_human_profile(caller):
-    return None, None
+    text = (
+    "Please summarize your character using \"profile [your profile]\". You can check your"
+    " description by using \"look me\". Use |/ for new lines"
+    "Your profile is a short summary about your character."
+    " It should tell other players about your character is about; what their"
+    " personality is like, what they do, and defining characteristics. Who are they?"
+    "\nIt must be 240 characters long. however, longer profiles are recommended."
+    )
+
+    options = [
+        { "key": ["(A)dvance", "advance", "a"],
+          "desc": "Go to validation",
+          "goto": "node_human_validate" },
+        
+        { "key": ["(B)ack", "back", "b"],
+          "desc": "Go back to description",
+          "goto": "node_human_desc" }
+    ]
+    return text, options
 
 # Node 3 Human
-def node_validate(caller):
-    return None, None
+def node_human_validate(caller):
+    text = "lel"
+    options = [
+        { "key": ["(B)ack", "back", "b"],
+          "desc": "Go back to profile",
+          # "exec": validate_human,
+          # "goto": "node_done" }
+          "goto": "node_human_profile" },
+        
+        { "key": "Finalize",
+          "desc": "Finishes character generation if everything is valid",
+          "exec": validate_human,
+          "goto": "node_done" }
+    ]
+    return text, options
 
 # Node 1 Demon
 def node_demon_desc(caller):
@@ -69,6 +146,12 @@ def node_demon_abilities(caller):
 def node_demon_validate(caller):
     return None, None
 
+
+def node_done(caller):
+    return None, None
+
+
+
 class CmdChargen(default_cmds.MuxCommand):
     """
     Chargen
@@ -85,10 +168,30 @@ class CmdChargen(default_cmds.MuxCommand):
         EvMenu(self.caller, 
                "commands.chargen",
                startnode = "node_race_select",
-               cmdset_mergetype = "Replace",
+               cmdset_mergetype = "Union",
                persistent = False)
 
-from evennia import CmdSet
+class CmdProfile(default_cmds.MuxCommand):
+    """
+    profile
+
+    Usage:
+      profile [desc]
+
+    Sets someone profile. If you are not a wizard, then the only
+    pofile you may set is your own, using me.
+
+    """
+
+    key = "profile"
+    locks = "cmd:all()"
+
+    def func(self):
+        if not self.args:
+            self.caller.msg("|555Please provide a profile.")
+        else:
+            self.caller.msg.db.profile = self.args.strip()
+            self.caller.msg("You set your profile")
 
 class CmdSetChargen(CmdSet):
     key = "Chargen"
