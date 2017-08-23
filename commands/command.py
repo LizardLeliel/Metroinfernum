@@ -220,7 +220,25 @@ class CmdProfile(default_cmds.MuxCommand):
 
     def func(self):
         if not self.args:
-            self.caller.msg("|555Please provide a profile.")
+            self.caller.msg("|500Please provide a profile.|n")
         else:
             self.caller.db.profile = self.args.strip()
             self.caller.msg("You set your profile")
+
+class CmdInfo(default_cmds.MuxCommand):
+    """
+    +CmdInfo
+
+    Usage:
+      +info [character]
+
+    This is unimplemented.
+
+    """
+
+    key = "+info"
+    locks = "cmd:all()"
+
+    def func(self):
+        self.caller.msg("|500This command is not yet implemented|n")
+
