@@ -37,7 +37,7 @@ class Character(DefaultCharacter):
         self.db.race = None
 
     def return_appearance(self, looker):
-        appearance = super(DefaultCharacter, self).return_appearance(looker)
+        appearance = super(Character, self).return_appearance(looker)
         # Perhaps change the line below
         appearance = self.db.name_colour + appearance[2:]
         return appearance
@@ -46,19 +46,19 @@ class Character(DefaultCharacter):
 #  that newly created characters won't until they completed char gen.
 class PlayerCharacter(Character):
     def at_object_creation(self):
-        super(DefaultCharacter, self).at_object_creation()
+        super(PlayerCharacter, self).at_object_creation()
         
 
 
 class HumanCharacter(PlayerCharacter):
     def at_object_creation(self):
-        super(PlayerCharacter, self).at_object_creation()
+        super(HumanCharacter, self).at_object_creation()
         self.db.name_colour = "|015"
-        self.race = "Human"
+        self.db.race = "Human"
 
 
 class DemonCharacter(PlayerCharacter):
     def at_object_creation(self):
-        super(PlayerCharacter, self).at_object_creation()
+        super(DemonCharacter, self).at_object_creation()
         self.db.name_colour = "|520"
-        self.race = "Demon"
+        self.db.race = "Demon"

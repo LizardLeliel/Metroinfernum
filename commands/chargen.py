@@ -36,11 +36,11 @@ from evennia.utils.evmenu import EvMenu
 # Todo: refactor 320 and 240 into named constants
 # Also todo: refactor these two functions (they're pratically the same)
 def validate_human(caller):
-    if len(caller.db.desc) < 320:
+    if caller.db.desc == None or len(caller.db.desc) < 320:
         caller.msg("|500You description is too short (only " + str(len(caller.db.profile)) + " characters long).|n")
         return "node_human_validate"
 
-    if len(caller.db.profile) < 240:
+    if caller.bd.profile == None or len(caller.db.profile) < 240:
         caller.msg("|500You profile is too short (only " + str(len(caller.db.profile)) + " characters long).|n")
         return "node_human_validate"
 

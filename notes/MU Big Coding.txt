@@ -1,0 +1,102 @@
+
+> Events
+- on Take Take Event (function)
+- On exit
+- On enter
+- On Attack
+- On struck
+- On used
+x On tick - not tick_handler though?
+- On turn
+- On equip/unequip
+- On Sound
+
+
+> Environmental objects
+- Needs to have hide conditions
+- Restricted paths which require certain stats/items
+
+
+== Inventory Items
+
+> Base inventory object 
+- Weight
+- Space
+- Favour sell
+- Favour buy
+
+
+== Equipment Items
+
+> Base equipment item
+-? has an equip item
+
+> Clothing
+- Has warmth value
+- Has exclusive slots
+Head
+Top Head
+Mouth
+Eyes
+Hands
+Body
+Overbody
+Legs
+Feet
+- Protect values (take away from health)
+
+> Hand items
+- One or two handed
+
+> ranged weapons
+- Has loaded ammo
+- Range (#of rooms)
+- Power
+- Ammo type
+- Accuracy
+- Use will shoot; if it hits depends on your proficency, observation, etc.
+- Can have equipment (use x on weapon)
+
+> Melee items
+- Has durability (could have infinite?)
+- Power
+- Strike/slash
+- Ease of use (has to do with shortness and stuff)
+
+== AI
+- When you go to a dungeon, a couple of them spawn
+- Every few ticks they move around (how often based on their mobility and your slow)
+- They seek noises
+- Attack humans and demons
+
+
+
+== If I use handlers
+> Volatile stats handler
+- Calcualtes max health
+- Gets current health?
+- You can subtract health
+- add health
+- set health directly
+- event hook for regenerating health (or room transistion?)
+
+- Calculates max energy
+- Gets current energy
+- subtracts energy
+- add energy
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+source pyenv/bin/activate
+
+evennia --init mygame
+cd mygame
+evennia migrate
+evennia start
+
+52.87.140.201:4234
+
+To launch it just type its name with no arguments
+
+To detach the session, type ^b d for tmux or ^a d for screen
+
+To reattach, just type screen -D for screen or tmux session-attach for tmux

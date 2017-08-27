@@ -1,0 +1,75 @@
+== Change channels up
+- Allow people to make their own alias
+- Gag and ungag
+- Join new ones
+- Make ooc not a channel
+- Logging
+
+== Make Base MI Room Class - Done!
+- Prints out more nicely, replacing %r and %t
+- Prints with colour flourishing
+- Prints exits in a list, seperatly
+- Desc different based on human or demon 
+
+== Make Base MI Exit Class?
+- Uses (b)racket notation
+- Can be hidden from a race
+
+== Paging
+- using just p will work
+- Can recall last paged users
+
+== Make Base MI Character Class
+- Has perm stats
+- Has bars
+- Description
+- has methods needed for killing
+- Can hold items
+
+== Make Demon Character Class
+- Has demon attributes with event hooks
+- Can't hold bags
+- Has reputation currency
+
+== Make Human Character Class
+- Can use items, bags
+- Holds Favour currency
+
+== Look into making a (static) +map function
+
+== Change "@emit" command
+- No arguments implies 'here'
+- Replaces %t and %r
+
+== Character Generation
+- Select Human or Demon
+- Can add a description
+- Can add a profile
+- Gives starting stats and equipment (for human)
+- Allows demons to select which abilities they have
+- Can't explore grid until approved, or after half a day
+
+== Where
+
+== Reformat 'who'
+
+== Party Up
+- Must be rp only
+- Allows you to follow a player to any room they can access
+- Make it combat later
+
+
+== Replace @desc so it replaces %r and %t.
+== Get the %r contribute
+
+== Change error messages to red
+== Add @profile command
+
+<Tehom_> You most likely want MULTISESSION_MODE = 2
+
+Sort out guests later
+
+
+
+
+

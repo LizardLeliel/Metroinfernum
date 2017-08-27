@@ -1,0 +1,120 @@
+Humans hunt for these as they either have pratical effects, and sell well.
+
+Monsters can get requests for these by curious mon. They can't wear bags, so
+ they have to carry them.
+
+Scavange types:
+== Medicine
+- Ibuprofen
+- Heavy pain reliever
+- Bone instaheal
+- Cafinated drinks
+- Energy drinks
+- Stimulants
+- Cold and Flu
+- Medicine for boosting stats
+- Strong medicine (reverses critical condition, needs painkillers)
+- Antivenom (cheap)
+- Strength (increases strength)
+- Rec. Drugs (Monsters)
+- Antibleed (sting and non-sting variety)
+- Shock inhibitors
+- Vitamins (with various stat boosts)
+- Ointment
+
+== Nessecities
+- Blankets
+- Pen
+- Flashlight (crappy, Civilian, army/police)
+- Batteries
+- Rope (multiple lengths and strength)
+- Plastic Grocery Bag
+- Gauze
+- First aid (takes time, will reverse critical condition)
+- University books 
+- Cig lighers
+- Candle lighters
+- Crowbar
+- Blankets (medium, towel)
+- Screwdivers
+- Screws and nails
+- Saws
+- Other powertools/regular tools
+
+== Knowledge
+- University books (for factions)
+
+== Clothing
+- Sports Helmet
+- Hard Hat
+- Coat
+- Boots (winter, non-steel, steel toed, army)
+- Padded armour (nullifies one critical injury)
+- Scarf (wrap and pull), mitten, gloves, beanie hat
+- Goggles
+- Invisibility clothing (army only, rare)
+- Sports Gear (functional armour)
+
+== Melee Arms
+- Kitchen Knife
+- Combat Knife
+- Machete
+- Bat (Breakable)
+- Lead pipe (heavy)
+- A chair (breakable)
+- Carpenter hammer
+- Big hammer
+- Sledgehammer
+
+== Ranged Arms
+- Pistol
+- Light assault rifle
+- Shotgun
+- Taser
+- Sniper (needs high proffeciency, knowledge, but lets you shoot through multiple rooms)
+
+== Misc arms
+- Grenades (smoke, stun/flash, frag)
+
+== Ranged Arms Assceories
+- Pistol magazine
+- Assault magazine
+- Shells
+- Slugs
+- Silencer (super important)
+- Holster?
+
+== Bags (have space and weight constraints)
+(army has camo carients; greenland, desert, water, olive)
+(civilian has basic colours, faux camo, logo, fancy)
+
+> back
+- School backpack (medium small)
+- General backpack (medium)
+- Rucksack (large)
+- Army bag (large)
+- Hiker backpack (extra large)
+- Medical packs (army)
+
+> shoulder
+- Frabric grocery bag (medium small, small space)
+- draw-bag (medium small)
+- Purse (small)
+- Large purse (medium small)
+- Shoulder bag (small)
+- satchel (medium)
+- Safari (large)
+- Atheletic bag (large)
+- Duffle (large)
+- Child's backpack
+
+
+
+
+
+
+
+
+
+
+

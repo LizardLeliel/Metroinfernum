@@ -19,7 +19,7 @@ class Room(DefaultRoom):
     properties and methods available on all Objects.
     """
 
-    def return_appearance(self, looker):
+    def format_appearance(self, looker, alt_desc = None):
         visible = (con for con in self.contents if True and
                    con.access(looker, "view"))
 
@@ -40,7 +40,11 @@ class Room(DefaultRoom):
 
         # get description, build string
         return_string = self.db.name_colour + "%s|n\n" % self.get_display_name(looker)
-        desc = self.db.desc
+
+        if alt_desc != None and self.attributes.has(alt_desc):
+            desc = self.attributes.get(alt_desc)
+        else:
+            desc = self.db.desc
     
         if desc:
             # Also try |542
@@ -71,9 +75,11 @@ class Room(DefaultRoom):
 
         return return_string
 
+    def return_appearance(self, looker):
+        return self.format_appearance(looker)
     
     def at_object_creation(self):
-        super(DefaultRoom, self).at_object_creation()
+        super(Room, self).at_object_creation()
         self.db.name_colour   = "|555"
         self.db.format_colour = "|555"
         self.db.hold_colour   = "|n"
@@ -83,19 +89,33 @@ class Room(DefaultRoom):
 
 class OverworldRoom(Room):
     def at_object_creation(self):
-        super(Room, self).at_object_creation()
+        super(OverworldRoom, self).at_object_creation()
         self.db.name_colour   = "|520"
         self.db.format_colour = "|520"
         self.db.hold_colour   = "|540"
         self.db.desc_colour   = "|555"
 
+    def return_appearance(self, looker):
+        if looker.db.race == "Human":
+            return super(OverworldRoom, self).format_appearance(looker, alt_desc = "human_desc")
+        else:
+            return super(OverworldRoom, self).format_appearance(looker, alt_desc = None)
+
+
 class UnderworldRoom(Room):
     def at_object_creation(self):
-        super(Room, self).at_object_creation()
+        super(UnderworldRoom, self).at_object_creation()
         self.db.name_colour   = "|015"
         self.db.format_colour = "|015"
         self.db.hold_colour   = "|035"
         self.db.desc_colour   = "|555"
+
+    def return_appearance(self, looker):
+        if looker.db.race == "Demon":
+            return super(UnderworldRoom, self).format_appearance(looker, alt_desc = "demon_desc")
+        else:
+            return super(UnderworldRoom, self).format_appearance(looker)
+
 
 class TestRoom(Room):
     def format_room_appearance(self,

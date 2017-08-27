@@ -1,0 +1,19 @@
+@dig house = large red door;door;in,to the outside;out
+@open north;n = house
+
+@teleport box = house
+@find box
+
+@desc here=Bordering the shoreline are large buildings, likely warehouses. Behind them are a few cargoships. The smell of the sea is still strong even here. To the north is the waterfront, originally meant to be a leisure spot for humans but now a favourite area for waterborne demons. To the south past a wall with a barbed gate lies where the navy houses itself. To the south east continues the industrial zone, but
+
+|/ and |-...? is how to use new line and tabulation
+
+@py from typeclasses.rooms import Room; [obj.at_object_creation() for obj in Room.objects.all()]
+@open exit;alias;alias,returnexit;alias;alias=dest
+
+Industrial Street: #30
+to Underground checkpoint: #90
+to Surface: #91
+Underground Checkpoint: #87
+
+@py from commands.chargen import CmdSetChargen;here.cmdset.add(CmdSetChargen, permanent=True)
