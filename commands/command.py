@@ -238,7 +238,34 @@ class CmdInfo(default_cmds.MuxCommand):
 
     key = "+info"
     locks = "cmd:all()"
+    aliases = ["+finger"]
 
     def func(self):
         self.caller.msg("|500This command is not yet implemented.|n")
+
+class CmdOOC(default_cmds.MuxCommand):
+    """
+    ooc 
+
+    Usage:
+      ooc [info]
+
+    Sends an out-of-character message to the room.
+
+    """
+
+    key = "ooc"
+    locks = "cmd:all()"
+    liases = ["+ooc"]
+
+    def func(self):
+        if not self.args:
+            caller.msg("Say what?")
+            return
+        caller = self.caller
+        speech = self.args
+        emit_string = "|555<OOC>|n %s says, \"%s\"" % (caller.name, speech)
+
+        caller.location.msg_contents(text = emit_string,
+                                      from_obj = caller)
 

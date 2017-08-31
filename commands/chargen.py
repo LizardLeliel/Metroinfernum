@@ -40,7 +40,7 @@ def validate_human(caller):
         caller.msg("|500You description is too short (only " + str(len(caller.db.profile)) + " characters long).|n")
         return "node_human_validate"
 
-    if caller.bd.profile == None or len(caller.db.profile) < 240:
+    if caller.db.profile == None or len(caller.db.profile) < 240:
         caller.msg("|500You profile is too short (only " + str(len(caller.db.profile)) + " characters long).|n")
         return "node_human_validate"
 
