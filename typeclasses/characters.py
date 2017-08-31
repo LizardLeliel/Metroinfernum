@@ -54,11 +54,11 @@ class HumanCharacter(PlayerCharacter):
     def at_object_creation(self):
         super(HumanCharacter, self).at_object_creation()
         self.db.name_colour = "|015"
-        self.db.race = "Human"
+        self.db.race = "human"
 
 
 class DemonCharacter(PlayerCharacter):
     def at_object_creation(self):
         super(DemonCharacter, self).at_object_creation()
         self.db.name_colour = "|520"
-        self.db.race = "Demon"
+        self.db.race = "demon"

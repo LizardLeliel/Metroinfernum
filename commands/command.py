@@ -240,5 +240,5 @@ class CmdInfo(default_cmds.MuxCommand):
     locks = "cmd:all()"
 
     def func(self):
-        self.caller.msg("|500This command is not yet implemented|n")
+        self.caller.msg("|500This command is not yet implemented.|n")
 
