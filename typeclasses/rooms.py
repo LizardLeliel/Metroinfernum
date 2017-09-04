@@ -56,7 +56,7 @@ class Room(DefaultRoom):
         return_string += "  " + self.db.format_colour + "Exits:" + "|n\n"
 
         if exits:
-            return_string += self.db.hold_colour + "\nTo ".join(exits) + "|n\n"
+            return_string += self.db.hold_colour + "\n".join(exits) + "|n\n"
         else:
             return_string += self.error_color + "his room has no exits|n\n"
 
