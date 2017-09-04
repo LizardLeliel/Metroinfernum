@@ -38,6 +38,7 @@ class CharacterCmdSet(default_cmds.CharacterCmdSet):
         self.add(command.CmdProfile)
         self.add(command.CmdInfo)
         self.add(command.CmdOOC)
+        self.add(command.CmdMap)
 
 
 class PlayerCmdSet(default_cmds.PlayerCmdSet):

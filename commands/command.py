@@ -227,7 +227,7 @@ class CmdProfile(default_cmds.MuxCommand):
 
 class CmdInfo(default_cmds.MuxCommand):
     """
-    +CmdInfo
+    +info
 
     Usage:
       +info [character]
@@ -256,7 +256,7 @@ class CmdOOC(default_cmds.MuxCommand):
 
     key = "ooc"
     locks = "cmd:all()"
-    liases = ["+ooc"]
+    aliases = ["+ooc"]
 
     def func(self):
         if not self.args:
@@ -274,3 +274,19 @@ class CmdOOC(default_cmds.MuxCommand):
         caller.location.msg_contents(text = emit_string,
                                       from_obj = caller)
 
+class CmdMap(default_cmds.MuxCommand):
+    """
+    +map
+
+    Usage:
+      +map
+
+    Presents a map of underworld or overworld, depending on location.
+    """
+
+    key = "+map"
+    locks = "cmd:all()"
+    aliases = ["map"]
+
+    def func(self):
+        self.caller.msg("Please see https://pastebin.com/B0Gtp3Nh")

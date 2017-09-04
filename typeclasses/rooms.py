@@ -36,39 +36,45 @@ class Room(DefaultRoom):
             else:
                 things.append(key)
 
-        seperator_line = self.db.format_colour + "-"*78 + "|n\n"
+        # Initialize some values
+        return_string = ""
+        seperator_line = "%s%s|n" % (self.db.format_colour, "-"*78)
 
-        # get description, build string
-        return_string = self.db.name_colour + "%s|n\n" % self.get_display_name(looker)
-
+        # Fill out desc whether default or alternative description is asked for
         if alt_desc != None and self.attributes.has(alt_desc):
             desc = self.attributes.get(alt_desc)
         else:
             desc = self.db.desc
     
-        if desc:
-            # Also try |542
-            return_string += self.db.desc_colour + "%s|n\n" % desc 
-        else:
-            return_string += self.db.error_colour + "This room has no description|n\n"
+        # Start building the string
+        return_string += "%s%s|n\n" % (self.db.name_colour, self.get_display_name(looker))
 
+        if desc:
+            return_string += "%s%s|n\n" % (self.db.desc_colour, desc)
+        # Put in a warning description if no text
+        else:
+            return_string += "%sThis room has no description|n\n" % self.db.error_colour
+
+        # Exits segment
         return_string += seperator_line
-        return_string += "  " + self.db.format_colour + "Exits:" + "|n\n"
+        return_string += "  %sExits:|n\n" % self.db.format_colour
 
         if exits:
-            return_string += self.db.hold_colour + "\n".join(exits) + "|n\n"
+            return_string += "%s%s|n\n" % (self.db.hold_colour, "\n".join(exits))
         else:
-            return_string += self.error_color + "his room has no exits|n\n"
+            return_string += "%sThis room has no exits|n\n" % self.error_color
 
+        # User Segment
         if users:
             return_string += seperator_line
-            return_string += "  " + self.db.format_colour + "Players:|n\n"
-            return_string += self.db.hold_colour + ", ".join(users) + "|n\n"
+            return_string += "  %sPlayers:|n\n" % self.db.format_colour
+            return_string += "%s%s|n\n" % (self.db.hold_colour, ", ".join(users))
 
+        # Objects Segment
         if things:
             return_string += seperator_line
-            return_string += "  " + self.db.format_colour + "Objects:|n\n"
-            return_string += self.db.hold_colour + ", ".join(things) + "|n\n"
+            return_string += "  %SObjects:|n\n" % self.db.format_colour
+            return_string += "%s%s|n\n" % (self.db.hold_colour, ", ".join(things))
 
 
         return_string += seperator_line
@@ -189,8 +195,6 @@ class TestRoom(Room):
 
         seperator = "-"*78 + "\n"
 
-        # room_desc = self.db.desc
-
         test_colours = "|_\n|_\n|_\n|500" + seperator \
              + "|510" + seperator \
              + "|520" + seperator \
@@ -204,11 +208,5 @@ class TestRoom(Room):
              + "|315" + seperator \
              + "|415" + seperator \
              + "|515" + seperator 
-
-             # + "|105" + seperator \
-             # + "|205" + seperator \
-             # + "|305" + seperator \
-             # + "|405" + seperator \
-             # + "|505" + seperator \
 
         return orange_xterm + "\n" + blue_xterm + test_colours
