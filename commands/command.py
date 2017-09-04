@@ -264,7 +264,12 @@ class CmdOOC(default_cmds.MuxCommand):
             return
         caller = self.caller
         speech = self.args
-        emit_string = "|555<OOC>|n %s says, \"%s\"" % (caller.name, speech)
+        emit_string = ""
+
+        if speech.strip()[0] == ":":
+            emit_string = "|555<OOC>|n %s %s" % (caller.name, speech.strip()[1:])
+        else:
+            emit_string = "|555<OOC>|n %s says, \"%s\"" % (caller.name, speech.strip())
 
         caller.location.msg_contents(text = emit_string,
                                       from_obj = caller)
