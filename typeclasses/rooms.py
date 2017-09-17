@@ -73,7 +73,7 @@ class Room(DefaultRoom):
         # Objects Segment
         if things:
             return_string += seperator_line
-            return_string += "  %SObjects:|n\n" % self.db.format_colour
+            return_string += "  %sObjects:|n\n" % self.db.format_colour
             return_string += "%s%s|n\n" % (self.db.hold_colour, ", ".join(things))
 
 

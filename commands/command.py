@@ -4,8 +4,10 @@ Commands
 Commands describe the input the player can do to the game.
 
 """
+from typeclasses.characters import Character
 
 from evennia import Command as BaseCommand
+from evennia import search_object
 # from evennia import default_cmds
 
 
@@ -208,10 +210,9 @@ class CmdProfile(default_cmds.MuxCommand):
     profile
 
     Usage:
-      profile [desc]
+      profile [info]
 
-    Sets someone profile. If you are not a wizard, then the only
-    pofile you may set is your own, using me.
+    Sets your own profile.
 
     """
 
@@ -232,7 +233,7 @@ class CmdInfo(default_cmds.MuxCommand):
     Usage:
       +info [character]
 
-    This is unimplemented.
+    This is command allows you to view the profile information of another character.
 
     """
 
@@ -241,7 +242,19 @@ class CmdInfo(default_cmds.MuxCommand):
     aliases = ["+finger"]
 
     def func(self):
-        self.caller.msg("|500This command is not yet implemented.|n")
+        if not self.args:
+            # Please add default to look at your own profile.
+            self.caller.msg("|500Please provide a character's name.|n")
+            return
+
+        character_name = self.args.strip()
+        character = self.caller.search(character_name)
+
+        if character:
+            self.caller.msg(character_name + "|/" + character.db.profile)
+        else:
+            self.caller.msg("\\o.o/")
+        #self.caller.msg("|500This command is not yet implemented.|n")
 
 class CmdOOC(default_cmds.MuxCommand):
     """
@@ -290,3 +303,4 @@ class CmdMap(default_cmds.MuxCommand):
 
     def func(self):
         self.caller.msg("Please see https://pastebin.com/B0Gtp3Nh")
+
