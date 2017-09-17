@@ -1,5 +1,10 @@
 Changelog
 =========
+v0.2.0 - September 17th, 2017
+-----------------------------
+* Commands +finger an alias +info and +profile now display
+profile information of other players
+* Fixed a bug with viewing rooms with objects (apparently one existed)
 
 v0.1.0 - Before September 17th, 2017
 ------------------------------------
